@@ -200,7 +200,59 @@ fn main() {
     //string literal reference (&str) to a String type. To do the conversion, we use the standard String::from(&str) method. or .to_string()
 
     //Enums
+    // enum WebEvent{
+    //     WELoad,
+    //     WEKeys(String,char),
+    //     WEClick{x:i64,y:i64}
+    // }
+    //weload has no associated data 
+    //wekeys has 2 fields
+    //weclick contains an anonymous struct with named fields
 
+
+    //Enums
+    //up,down..etc are variants of the Direction enum
+    enum Direction{
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
+    let player_direction:Direction = Direction::Up;
+
+    match player_direction{
+        Direction::Up => println!("\nPlayer moving up"),
+        Direction::Down => println!("\nPlayer moving Down"),
+        Direction::Left => println!("\nPlayer moving Left"),
+        Direction::Right => println!("\nPlayer moving Right")
+    }
+
+    //define an enum with structs
+    #[derive(Debug)]
+    struct KeyPress(String,char);
+
+    #[derive(Debug)]
+    struct MouseClick{x:i64,y:i64}
+
+    #[derive(Debug)]
+    enum WebEvent{
+        WELoad(bool),
+        WEClick(MouseClick),
+        WEKeys(KeyPress)
+    }
+
+    //instantiating enum variants
+
+    let we_load:WebEvent = WebEvent::WELoad(true);
+
+    let click = MouseClick{x:100,y:200};
+    let we_click:WebEvent = WebEvent::WEClick(click);
+
+    let keys = KeyPress(String::from("Ctrl+"),'N');
+    let we_keys:WebEvent = WebEvent::WEKeys(keys);
     
-
+    println!("\nWeb Event enum structure {:#?} \n\n {:#?} \n\n {:#?} \n",we_load,we_click,we_keys);
+    //#[derive(Debug)] lets us see certain values during the code execution that aren't viewable in standard output
+    //to view debug data in println! we use {:#?} to format data in a readable manner    
 }
