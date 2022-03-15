@@ -254,5 +254,29 @@ fn main() {
     
     println!("\nWeb Event enum structure {:#?} \n\n {:#?} \n\n {:#?} \n",we_load,we_click,we_keys);
     //#[derive(Debug)] lets us see certain values during the code execution that aren't viewable in standard output
-    //to view debug data in println! we use {:#?} to format data in a readable manner    
+    //to view debug data in println! we use {:#?} to format data in a readable manner
+
+    //functions
+    let formal = "Good Bye";
+    goodbye(formal);
+
+    println!("500 Divided by 10 Returns {}",divide_by_ten(500));
+    println!("500 Divided by 5 Returns {}",divide_by_5(500));
+
+}
+
+fn goodbye(msg:&str){
+    println!("\n{}",msg);
+}
+
+//last line indicates value to return
+fn divide_by_ten(num:u32)->u32{
+    num/10
+}
+
+fn divide_by_5(num:u32)->u32{
+    if(num==0){
+        return 0;
+    }
+    num/5
 }
